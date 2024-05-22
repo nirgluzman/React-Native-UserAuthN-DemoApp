@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // hook to give access to navigation object.
 
 import FlatButton from '../UI/FlatButton';
 import AuthForm from './AuthForm';
@@ -8,6 +9,8 @@ import AuthForm from './AuthForm';
 import { Colors } from '../../constants/styles';
 
 function AuthContent({ isLogin, onAuthenticate }) {
+  const navigation = useNavigation(); // useNavigation() returns the navigation prop of the screen it's inside.
+
   const [credentialsInvalid, setCredentialsInvalid] = useState({
     email: false,
     password: false,
@@ -16,7 +19,13 @@ function AuthContent({ isLogin, onAuthenticate }) {
   });
 
   function switchAuthModeHandler() {
-    // Todo
+    if (isLogin) {
+      // switch to Signup screen
+      navigation.replace('Signup'); // 'replace' navigates to a differnt screen but does not display the back button as with 'navigate'.
+    } else {
+      // switch to Login screen
+      navigation.replace('Login');
+    }
   }
 
   function submitHandler(credentials) {
