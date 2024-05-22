@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Alert } from 'react-native';
 
 import AuthContent from '../components/Auth/AuthContent';
 import LoadingOverlay from '../components/UI/LoadingOverlay'; // custom spinner component
@@ -10,9 +11,16 @@ function LoginScreen() {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
 
   async function loginHandler({ email, password }) {
-    setIsAuthenticating(true);
-    await loginUser(email, password);
-    setIsAuthenticating(false);
+    setIsAuthenticating(true); // enable spinner
+    try {
+      await loginUser(email, password);
+    } catch (err) {
+      Alert.alert(
+        'Authentication failed!',
+        'Could not log you in. Please check your credentials or try again later!'
+      );
+    }
+    setIsAuthenticating(false); // disable spinner
   }
 
   if (isAuthenticating) {
