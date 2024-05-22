@@ -9,6 +9,8 @@ import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 
+import IconButton from './components/UI/IconButton';
+
 // Context for managing user authentication
 import AuthContextProvider, { AuthContext } from './store/auth-context';
 
@@ -34,6 +36,9 @@ function AuthStack() {
 
 // authenticated user
 function AuthenticatedStack() {
+  // consuming the Context
+  const { logout } = useContext(AuthContext);
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -41,7 +46,16 @@ function AuthenticatedStack() {
         headerTintColor: 'white',
         contentStyle: { backgroundColor: Colors.primary100 }
       }}>
-      <Stack.Screen name='Welcome' component={WelcomeScreen} />
+      <Stack.Screen
+        name='Welcome'
+        component={WelcomeScreen}
+        options={{
+          // logout button
+          headerRight: ({ tintColor }) => (
+            <IconButton icon='exit' size={24} color={tintColor} onPress={logout} />
+          )
+        }}
+      />
     </Stack.Navigator>
   );
 }
