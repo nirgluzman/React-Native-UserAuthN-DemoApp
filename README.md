@@ -36,6 +36,16 @@ npm install @react-navigation/native-stack
 npm install @react-navigation/bottom-tabs
 ```
 
+### Environment variables in Expo
+
+https://docs.expo.dev/guides/environment-variables/
+
+- The Expo CLI will automatically load environment variables with an `EXPO_PUBLIC_` prefix from .env
+  files for use within your JavaScript code.
+
+- Do not store sensitive info, such as private keys, in `EXPO_PUBLIC_` variables. These variables
+  will be visible in plain-text in your compiled application.
+
 ### Firebase for AuthN Backend
 
 - Firebase Auth REST API, https://firebase.google.com/docs/reference/rest/auth
