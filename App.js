@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { StatusBar } from 'expo-status-bar';
 
 // React Navigation
@@ -8,7 +9,8 @@ import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 
-import AuthContextProvider from './store/auth-context.js';
+// Context for managing user authentication
+import AuthContextProvider, { AuthContext } from './store/auth-context';
 
 // global color styles
 import { Colors } from './constants/styles';
@@ -45,9 +47,16 @@ function AuthenticatedStack() {
 }
 
 function Navigation() {
+  // consuming the Context
+  const { isAuthenticated } = useContext(AuthContext);
+
   return (
     <NavigationContainer>
-      <AuthStack />
+      {/* render the AuthStack for un-authenticated users (i.e. login and signup screens). */}
+      {!isAuthenticated && <AuthStack />}
+
+      {/* render the AuthenticatedStack for authenticated users (i.e. welcome screen). */}
+      {isAuthenticated && <AuthenticatedStack />}
     </NavigationContainer>
   );
 }
@@ -56,6 +65,7 @@ export default function App() {
   return (
     <>
       <StatusBar style='light' />
+
       <AuthContextProvider>
         <Navigation />
       </AuthContextProvider>
