@@ -46,18 +46,19 @@ function AuthenticatedStack() {
 
 function Navigation() {
   return (
-    <NavigationContainer>
-      <AuthStack />
-    </NavigationContainer>
+    <AuthContextProvider>
+      <NavigationContainer>
+        <AuthStack />
+      </NavigationContainer>
+    </AuthContextProvider>
   );
 }
 
 export default function App() {
   return (
-    <AuthContextProvider>
+    <>
       <StatusBar style='light' />
-
       <Navigation />
-    </AuthContextProvider>
+    </>
   );
 }
