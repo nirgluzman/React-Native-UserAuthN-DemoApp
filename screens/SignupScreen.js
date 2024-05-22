@@ -27,8 +27,8 @@ function SignupScreen() {
         'Authentication failed!',
         'Could not create user. Please check your input and try again.'
       );
+      setIsAuthenticating(false); // disable spinner
     }
-    setIsAuthenticating(false); // disable spinner
   }
 
   if (isAuthenticating) {
