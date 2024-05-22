@@ -8,6 +8,8 @@ import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 
+import AuthContextProvider from './store/auth-context.js';
+
 // global color styles
 import { Colors } from './constants/styles';
 
@@ -52,10 +54,10 @@ function Navigation() {
 
 export default function App() {
   return (
-    <>
+    <AuthContextProvider>
       <StatusBar style='light' />
 
       <Navigation />
-    </>
+    </AuthContextProvider>
   );
 }
