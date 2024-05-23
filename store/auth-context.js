@@ -1,6 +1,7 @@
 // React Context for managing the AuthN status
 
 import { createContext, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const AuthContext = createContext({
   token: '',
@@ -15,10 +16,12 @@ export default function AuthContextProvider({ children }) {
 
   function authenticate(token) {
     setAuthToken(token);
+    AsyncStorage.setItem('idToken', token); // store the idToken in the storage.
   }
 
   function logout() {
     setAuthToken(null);
+    AsyncStorage.removeItem('idToken'); // remove the idToken from the storage.
   }
 
   const value = {
