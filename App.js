@@ -1,5 +1,9 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// The SplashScreen module from the expo-splash-screen library is used to tell the splash screen to remain visible until it has been explicitly told to hide.
+import * as SplashScreen from 'expo-splash-screen';
 
 // React Navigation
 import { NavigationContainer } from '@react-navigation/native';
@@ -75,13 +79,47 @@ function Navigation() {
   );
 }
 
+function Root() {
+  // consuming the Context
+  const { authenticate } = useContext(AuthContext);
+
+  // state to keep track of whether we are trying to fetch the token from the storage.
+  const [isTryingLogin, setIsTryingLogin] = useState(true);
+
+  // keep the splash screen visible while we fetch resources.
+  SplashScreen.preventAutoHideAsync();
+
+  // fetch the token from the storage when the Provider is created.
+  useEffect(() => {
+    async function fetchToken() {
+      const storedToken = await AsyncStorage.getItem('idToken'); // reading idToken from storage.
+      if (storedToken) {
+        authenticate(storedToken);
+      }
+
+      setIsTryingLogin(false); // finish interating with the storage.
+    }
+    fetchToken();
+  }, []);
+
+  // show the splash screen until we complete the fetching from storage.
+  if (isTryingLogin) {
+    return null;
+  } else {
+    // hide the splash screen.
+    SplashScreen.hideAsync();
+  }
+
+  return <Navigation />;
+}
+
 export default function App() {
   return (
     <>
       <StatusBar style='light' />
 
       <AuthContextProvider>
-        <Navigation />
+        <Root />
       </AuthContextProvider>
     </>
   );
