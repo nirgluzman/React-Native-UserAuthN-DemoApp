@@ -65,6 +65,19 @@ https://docs.expo.dev/guides/environment-variables/
   - Alternatively, many third-party services (like Firebase) offer official SDKs which handle token
     management (and refreshing the token) for you.
 
+### Firebase Realtime Database
+
+- Security rule to use idToken
+
+```json
+{
+  "rules": {
+    ".read": "auth.uid != null",
+    ".write": "auth.uid != null"
+  }
+}
+```
+
 ### React Native Async Storage
 
 https://reactnative.dev/docs/asyncstorage
