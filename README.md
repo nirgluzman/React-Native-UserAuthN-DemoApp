@@ -55,3 +55,11 @@ https://docs.expo.dev/guides/environment-variables/
 
 * Sign up with email/password,
   https://firebase.google.com/docs/reference/rest/auth#section-create-email-password
+
+### React Native Async Storage
+
+https://reactnative.dev/docs/asyncstorage
+https://github.com/react-native-async-storage/async-storage
+
+- AsyncStorage is an unencrypted, asynchronous, persistent, key-value storage system that is global
+  to the app. It should be used instead of LocalStorage.
