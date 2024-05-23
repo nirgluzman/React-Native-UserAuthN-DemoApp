@@ -56,6 +56,15 @@ https://docs.expo.dev/guides/environment-variables/
 * Sign up with email/password,
   https://firebase.google.com/docs/reference/rest/auth#section-create-email-password
 
+- Token management
+  https://www.udemy.com/course/react-native-the-practical-guide/learn/lecture/31404572#questions
+  - Automatically user logout after token expiration time.
+  - Token refresh: Whenever you get an auth token (i.e., after logging in or creating a new user),
+    you also get a refresh token.
+    https://firebase.google.com/docs/reference/rest/auth#section-refresh-token
+  - Alternatively, many third-party services (like Firebase) offer official SDKs which handle token
+    management (and refreshing the token) for you.
+
 ### React Native Async Storage
 
 https://reactnative.dev/docs/asyncstorage
@@ -63,3 +72,12 @@ https://github.com/react-native-async-storage/async-storage
 
 - AsyncStorage is an unencrypted, asynchronous, persistent, key-value storage system that is global
   to the app. It should be used instead of LocalStorage.
+
+### Expo SplashScreen
+
+https://docs.expo.dev/versions/latest/sdk/splash-screen/
+
+- Library to tell the splash screen to remain visible until it has been explicitly told to hide.
+
+- This is useful to do tasks that will happen behind the scenes such as making API calls,
+  pre-loading fonts, animating the splash screen and so on.
