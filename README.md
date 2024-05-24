@@ -46,6 +46,14 @@ https://docs.expo.dev/guides/environment-variables/
 - Do not store sensitive info, such as private keys, in `EXPO_PUBLIC_` variables. These variables
   will be visible in plain-text in your compiled application.
 
+### Firebase API Key - Security aspects
+
+https://www.udemy.com/course/react-native-the-practical-guide/learn/lecture/31435374?start=15#questions/5576238
+
+- Once our application is deployed, we can restrict that key to only be used from your deployment
+  url (in the case of a web frontend - api key restricted to the origin of the deployed
+  application).
+
 ### Firebase for AuthN Backend
 
 - Firebase Auth REST API, https://firebase.google.com/docs/reference/rest/auth
