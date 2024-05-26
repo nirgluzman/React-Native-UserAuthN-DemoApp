@@ -23,6 +23,9 @@ import { Colors } from './constants/styles';
 
 const Stack = createNativeStackNavigator();
 
+// keep the splash screen visible while we fetch resources.
+SplashScreen.preventAutoHideAsync();
+
 // un-authenticated user
 function AuthStack() {
   return (
@@ -85,9 +88,6 @@ function Root() {
 
   // state to keep track of whether we are trying to fetch the token from the storage.
   const [isTryingLogin, setIsTryingLogin] = useState(true);
-
-  // keep the splash screen visible while we fetch resources.
-  SplashScreen.preventAutoHideAsync();
 
   // fetch the token from the storage when the Provider is created.
   useEffect(() => {
